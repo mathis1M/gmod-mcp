@@ -4,7 +4,7 @@
 	"description": "Test MCP server for Garry's Mod",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/mathis1M/gmod-mcp.git"
+		"url": "git+https://github.com/mathis1M/gmod-mcp.git"
 	},
 	"type": "module",
 	"bin": {
