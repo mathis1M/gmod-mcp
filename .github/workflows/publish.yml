@@ -1,0 +1,63 @@
+name: Publish to npm
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: npm-publish
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
+
+      - uses: oven-sh/setup-bun@v2
+
+      - name: Install dependencies
+        run: bun install --no-save
+
+      - name: Select next patch version
+        shell: bash
+        run: |
+          set -euo pipefail
+          package_name="$(node -p "require('./package.json').name")"
+          local_version="$(node -p "require('./package.json').version")"
+          registry_version="$(npm view "$package_name" version --registry=https://registry.npmjs.org 2>/dev/null || true)"
+          LOCAL_VERSION="$local_version" REGISTRY_VERSION="${registry_version:-0.0.0}" node <<'NODE'
+          const fs = require("node:fs");
+
+          const parse = (version) => version.split(".").map(Number);
+          const compare = (leftVersion, rightVersion) => {
+            const left = parse(leftVersion);
+            const right = parse(rightVersion);
+            for (let index = 0; index < 3; index += 1) {
+              const difference = (left[index] ?? 0) - (right[index] ?? 0);
+              if (difference !== 0) return difference;
+            }
+            return 0;
+          };
+
+          const baseVersion = compare(process.env.LOCAL_VERSION, process.env.REGISTRY_VERSION) >= 0
+            ? process.env.LOCAL_VERSION
+            : process.env.REGISTRY_VERSION;
+          const packageJson = JSON.parse(fs.readFileSync("package.json", "utf8"));
+          packageJson.version = baseVersion;
+          fs.writeFileSync("package.json", `${JSON.stringify(packageJson, null, 2)}\n`);
+          NODE
+          npm version patch --no-git-tag-version
+
+      - name: Publish package
+        run: npm publish --access public
