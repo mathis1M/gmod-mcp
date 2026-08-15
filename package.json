@@ -1,0 +1,29 @@
+{
+	"name": "@mathis1m/gmod-mcp",
+	"version": "0.0.1",
+	"description": "Test MCP server for Garry's Mod",
+	"type": "module",
+	"bin": {
+		"gmod-mcp": "dist/server.js"
+	},
+	"files": [
+		"server.ts",
+		"dist"
+	],
+	"scripts": {
+		"build": "bun build server.ts --outfile dist/server.js --target node --packages external",
+		"start": "node dist/server.js",
+		"prepublishOnly": "bun run build"
+	},
+	"engines": {
+		"node": ">=20"
+	},
+	"dependencies": {
+		"@modelcontextprotocol/sdk": "^1.30.0",
+		"effect": "^3.22.1",
+		"zod": "^4.4.3"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
