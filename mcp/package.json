@@ -1,6 +1,6 @@
 {
 	"name": "@mathis1m/gmod-mcp",
-	"version": "0.0.4",
+	"version": "0.0.7",
 	"author": "mathis1M",
 	"license": "MIT",
 	"description": "Model Context Protocol server for Garry's Mod",
