@@ -3,7 +3,7 @@ local LOGS_BEGIN_MESSAGE = "gmod_mcp_logs_begin"
 local LOG_ENTRY_MESSAGE = "gmod_mcp_log_entry"
 local LOGS_DENIED_MESSAGE = "gmod_mcp_logs_denied"
 local CLOSE_LOGS_MESSAGE = "gmod_mcp_close_logs"
-local GITHUB_URL = "https://github.com/mathislM/gmod-mcp"
+local GITHUB_URL = "https://github.com/mathis1M/gmod-mcp"
 
 local COLOR_BACKGROUND = Color(0, 0, 0)
 local COLOR_ROW = Color(34, 34, 34)
