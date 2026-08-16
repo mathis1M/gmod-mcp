@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
+import { realpathSync } from "node:fs";
 import { createConnection } from "node:net";
-import { pathToFileURL } from "node:url";
+import { fileURLToPath } from "node:url";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { Effect } from "effect";
@@ -265,7 +266,7 @@ export function createServer() {
 		"exec_lua_code",
 		{
 			description:
-				"Execute Lua; set return_result=true only when the code returns a value or calls GModMCP.return_result(...).",
+				"Execute Lua; set return_result=true only when the code returns a value or calls GModMCP.return_result(...). Watch for nested delimiters and backslashes: Lua's parser can misread escaping, so keep delimiters balanced and escape backslashes deliberately.",
 			inputSchema: {
 				code: z.string().describe("Lua code to execute."),
 				state: z
@@ -358,12 +359,18 @@ export async function main() {
 	await createServer().connect(new StdioServerTransport());
 }
 
-if (
-	process.argv[1] &&
-	pathToFileURL(process.argv[1]).href === import.meta.url
-) {
-	main().catch((cause) => {
-		console.error(cause);
-		process.exitCode = 1;
-	});
+if (process.argv[1]) {
+	try {
+		if (
+			realpathSync(process.argv[1]) ===
+			realpathSync(fileURLToPath(import.meta.url))
+		) {
+			main().catch((cause) => {
+				console.error(cause);
+				process.exitCode = 1;
+			});
+		}
+	} catch {
+		// The entrypoint may be a temporary npm shim that has already disappeared.
+	}
 }

@@ -1,22 +1,23 @@
 {
 	"name": "@mathis1m/gmod-mcp",
-	"version": "0.0.1",
-	"description": "Test MCP server for Garry's Mod",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/mathis1M/gmod-mcp.git"
-	},
+	"version": "0.0.4",
+	"author": "mathis1M",
+	"license": "MIT",
+	"description": "Model Context Protocol server for Garry's Mod",
 	"type": "module",
 	"bin": {
 		"gmod-mcp": "dist/server.js"
 	},
 	"files": [
-		"server.ts",
 		"dist"
 	],
 	"scripts": {
-		"build": "bun build server.ts --outfile dist/server.js --target node --packages external",
+		"dev": "bun server.ts",
+		"build": "bun build server.ts --outdir dist --target node --packages external",
 		"start": "node dist/server.js",
+		"test": "bun test",
+		"check": "biome check server.ts package.json",
+		"format": "biome format --write server.ts package.json",
 		"prepublishOnly": "bun run build"
 	},
 	"engines": {
@@ -24,10 +25,13 @@
 	},
 	"dependencies": {
 		"@modelcontextprotocol/sdk": "^1.30.0",
+		"ajv": "^8.20.0",
 		"effect": "^3.22.1",
 		"zod": "^4.4.3"
 	},
-	"publishConfig": {
-		"access": "public"
+	"devDependencies": {
+		"@biomejs/biome": "2.5.8",
+		"@types/bun": "^1.3.14",
+		"@types/node": "^26.2.0"
 	}
 }
