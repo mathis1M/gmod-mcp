@@ -1,2 +1,8 @@
-dist/
-node_modules/
+node_modules
+.codex
+.vscode
+.claude
+dist
+mcp/v1/debug
+bridge/target
+bridge/Cargo.lock

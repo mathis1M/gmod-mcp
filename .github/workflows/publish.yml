@@ -15,6 +15,9 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: mcp
     steps:
       - uses: actions/checkout@v6
 
