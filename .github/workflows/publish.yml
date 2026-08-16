@@ -63,4 +63,17 @@ jobs:
           npm version patch --no-git-tag-version
 
       - name: Publish package
-        run: npm publish --access public
+        shell: bash
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3; do
+            if npm publish --access public; then
+              exit 0
+            fi
+
+            if [ "$attempt" -lt 3 ]; then
+              npm version patch --no-git-tag-version
+            fi
+          done
+
+          exit 1
