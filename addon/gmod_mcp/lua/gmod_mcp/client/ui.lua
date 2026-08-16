@@ -263,7 +263,7 @@ local function create_menu()
     end
 
     local link = vgui.Create("DButton", menu)
-    link:SetText("github.com/mathislM/gmod-mcp")
+    link:SetText("github.com/mathis1M/gmod-mcp")
     link:SetFont("GModMCP.Link")
     link:SetTextColor(COLOR_ACCENT)
     link:SetCursor("hand")
