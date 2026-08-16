@@ -30,6 +30,10 @@ GMod MCP connects AI agents to live Garry's Mod sessions through the Model Conte
 
 The project consists of an MCP server, a Garry's Mod addon, and a native bridge module. Together, they allow AI agents to check the connection status, inspect players and entities, execute Lua code on the server or a selected client, and capture screenshots.
 
+You can obviously have fun with it, but it can also be useful for addon development: your AI agent can directly test what you are working on, execute Lua code, and capture screenshots to check the result.
+
+This was something I felt was missing from Garry's Mod, so I made it open source for anyone who might find it useful.
+
 ### Demo Video
 
 [![Watch the GMod MCP demo](https://img.youtube.com/vi/FYkgUpSCJ3k/hqdefault.jpg)](https://www.youtube.com/watch?v=FYkgUpSCJ3k)
