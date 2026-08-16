@@ -26,11 +26,11 @@
 
 ## Overview
 
-GMod MCP connects AI agents to live Garry's Mod sessions through the Model Context Protocol (MCP). It allows compatible clients such as Codex and Claude to inspect and interact with the game using  tools.
+GMod MCP connects AI agents such as Codex and Claude directly to live Garry's Mod sessions through the Model Context Protocol (MCP).
 
-The project consists of an MCP server, a Garry's Mod addon, and a native bridge module. Together, they allow AI agents to check the connection status, inspect players and entities, execute Lua code on the server or a selected client, and capture screenshots.
+It combines an MCP server, a native bridge, and a Garry's Mod addon to make this connection possible.
 
-You can obviously have fun with it, but it can also be useful for addon development: your AI agent can directly test what you are working on, execute Lua code, and capture screenshots to check the result.
+You can use it for experimentation and fun, but it is also useful for addon development: an agent can test changes, execute Lua code, and capture screenshots to verify the result.
 
 This was something I felt was missing from Garry's Mod, so I made it open source for anyone who might find it useful.
 
