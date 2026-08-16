@@ -3,6 +3,8 @@ name: Publish to npm
 on:
   push:
     branches: [main]
+    paths:
+      - "mcp/**"
 
 concurrency:
   group: npm-publish

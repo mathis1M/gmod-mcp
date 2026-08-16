@@ -3,7 +3,9 @@
 ## Table of Contents
 
 - [Overview](#overview)
+- [Demo Video](#demo-video)
 - [Usage](#usage)
+  - [In-Game Menu](#in-game-menu)
 - [Installation](#installation)
   - [Prerequisites](#prerequisites)
   - [Automatic Installation](#automatic-installation)
@@ -28,12 +30,22 @@ GMod MCP connects AI agents to live Garry's Mod sessions through the Model Conte
 
 The project consists of an MCP server, a Garry's Mod addon, and a native bridge module. Together, they allow AI agents to check the connection status, inspect players and entities, execute Lua code on the server or a selected client, and capture screenshots.
 
+## Demo Video
+
+[Watch the GMod MCP demo on YouTube](https://www.youtube.com/watch?v=FYkgUpSCJ3k)
+
 ## Usage
 
 1. Start Garry's Mod with the GMod MCP addon and native module installed.
 2. Start your configured AI client. It will launch GMod MCP automatically through `npx`.
 3. Wait for the MCP connection to become available.
 4. Ask the AI client to inspect or interact with the running game.
+
+### In-Game Menu
+
+Type `!mcp` in chat or `mcp` in the Garry's Mod console to open the in-game menu:
+
+![GMod MCP in-game menu](assets/gmod-mcp-menu.png)
 
 Available tools include:
 
